@@ -1,33 +1,101 @@
-
+<!DOCTYPE html>
 <html>
   <head>
+    <meta name="description" content="My Dev Profile">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-    <title>My Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <title>Carter Sasse</title>
   </head>
-      <body class="text-center bg-blue-300">
-<div class="flex justify-center p-8">
-  <div class="bg-white rounded-2xl border border-gray-200 p-10 max-w-sm w-full text-center">
-    <h1 class="text-3xl font-bold mt-4 mb-1 tracking-tight" style="font-family: 'Syne', sans-serif;">Carter Sasse</h1>
-        <p class="text-gray-500 text-sm mb-5">Techie 15-year-old tinkering with things.</p>
+  <body class="text-center bg-blue-50 dark:bg-gray-900">
+
+    <div class="flex justify-center p-8">
+      <div class="relative bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-10 max-w-sm w-full text-center">
+
+        <button onclick="document.documentElement.classList.toggle('dark')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl">🌙</button>
+
+        <img
+          class="w-28 h-28 rounded-full object-cover mx-auto border-4 border-blue-400"
+          src="https://imgs.search.brave.com/FjOAY2Y7fyITaJL6KmfDGOK8P9CX9xA9VzF1B9xaOvo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2IyL2M1/L2U2L2IyYzVlNjUz/ODRiMWIwZWE0Y2Qz/NTFiNjE1NWUxYjI5/LmpwZw"
+          alt="Carter Sasse"
+        />
+
+        <h1 class="text-3xl font-bold mt-4 mb-1 tracking-tight dark:text-white" style="font-family: 'Syne', sans-serif;">
+          Carter Sasse
+        </h1>
+
+        <p class="text-gray-500 dark:text-gray-400 text-sm mb-5">
+          15-year-old tinkering with things.
+        </p>
+
         <div class="flex gap-2 justify-center flex-wrap">
           <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Tech</span>
           <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Builder</span>
           <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Student</span>
-          <!-- overall stats -->
-<img src="https://github-readme-stats.vercel.app/api?username=lofidev47&show_icons=true&theme=default" class="mx-auto mt-4 rounded-xl" />
+        </div>
+        <img src="https://github-readme-stats.vercel.app/api?username=lofidev47&show_icons=true&theme=default" class="mx-auto mt-4 rounded-xl dark:hidden"/>
+        <img src="https://github-readme-stats.vercel.app/api?username=lofidev47&show_icons=true&theme=dark" class="mx-auto mt-4 rounded-xl hidden dark:block"/>
 
-<!-- most used languages -->
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=lofidev47&layout=compact" class="mx-auto mt-2 rounded-xl" />
-</div>
-<div class="flex gap-2 justify-center mt-4">
-  <a href="https://github.com/LofiDev47" class="border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">GitHub</a>
-</div>
-          <img class="w-28 h-28 rounded-full object-cover mx-auto border-4 border-blue-400" src="https://imgs.search.brave.com/FjOAY2Y7fyITaJL6KmfDGOK8P9CX9xA9VzF1B9xaOvo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2IyL2M1/L2U2L2IyYzVlNjUz/ODRiMWIwZWE0Y2Qz/NTFiNjE1NWUxYjI5/LmpwZw" alt="selfie"/>
-  
-  </div>
-  </div>
-</div>
-        
-      </body>
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=lofidev47&layout=compact&theme=default" class="mx-auto mt-2 rounded-xl dark:hidden"/>
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=lofidev47&layout=compact&theme=dark" class="mx-auto mt-2 rounded-xl hidden dark:block"/>
+
+        <div class="flex gap-2 justify-center mt-4">
+          
+           <a href="https://github.com/LofiDev47"
+            target="_blank"
+            class="border border-gray-200 dark:border-gray-600 dark:text-gray-300 rounded-lg px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+          >
+            GitHub
+
+
+          </a>
+        </div>
+      <a href="https://hits.sh/lofidev47.github.io/my-website/">
+        <img alt="Hits" src="https://hits.sh/lofidev47.github.io/my-website/" class="mx-auto mt-3 rounded-lg"/>
+      </a>
+      </div>
+    </div>
+<div class="flex justify-center px-8 pb-8">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-8 max-w-sm w-full text-left">
+
+        <h2 class="text-lg font-bold mb-4 dark:text-white" style="font-family: 'syne', sans-serif;">
+          Get in touch
+        </h2>
+
+        <form action="https://formspree.io/f/meevwgbd" method="POST">
+
+          <input
+          type="text"
+          name="name"
+          placeholder="Your name"
+          class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm mb-3 outline-none focus:border-blue-400"
+          />
+
+          <input
+          type="email"
+          name="email"
+          placeholder="Your email"
+          class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm mb-3 outline-none focus:border-blue-400"
+          />
+
+          <textarea
+          name="message"
+          placeholder="Your message"
+          rows="4"
+          class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm mb-3 outline-none focus:border-blue-400 resize-none"
+          ></textarea>
+
+          <button
+          type="submit"
+          class="w-full bg-blue-400 text-white rounded-lg px-4 py-2 text-sm hover:bg-blue-500"
+          >
+          Send
+          </button>
+
+          </form>
+
+          </div>
+          </div>
+
+  </body>
 </html>
