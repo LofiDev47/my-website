@@ -1,108 +1,351 @@
 <!DOCTYPE html>
-<html class ="scroll-smooth dark" lang="en">
-  <head>
-    <meta name="description" content="My Dev Profile">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = { darkMode: 'class' }</script>
-    <title>Carter Sasse</title>
-  </head>
-  <body class="text-center bg-blue-50 dark:bg-gray-900">
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Carter Sasse — Dev Profile" />
+  <title>Carter Sasse</title>
+  <!-- Preconnect first, then load fonts before anything else -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <div class="flex justify-center p-8">
-      <div class="relative bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-10 max-w-sm w-full text-center">
+    body {
+      font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+      background-color: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+    }
 
-        <button onclick="document.documentElement.classList.toggle('dark')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl">🌙</button>
+    .syne {
+      font-family: 'Syne', ui-sans-serif, system-ui, sans-serif;
+      font-weight: 800;
+    }
 
-        <img
-          class="w-28 h-28 rounded-full object-cover mx-auto border-4 border-blue-400"
-          src="https://cdn.hackclub.com/019df5ef-4f95-71c0-a665-4893c98e0df5/IMG_8148.JPG"
-          alt="Carter Sasse"
-        />
+    html:not(.dark) body { background-color: #f6f8fa; color: #24292f; }
+    html:not(.dark) .card { background: #ffffff !important; border-color: #d0d7de !important; }
+    html:not(.dark) .nav-bar { background: rgba(246,248,250,0.9) !important; border-color: #d0d7de !important; }
+    html:not(.dark) input, html:not(.dark) textarea { background: #f6f8fa !important; border-color: #d0d7de !important; color: #24292f !important; }
+    html:not(.dark) input:focus, html:not(.dark) textarea:focus { border-color: #0969da !important; background: #fff !important; }
+    html:not(.dark) .tag { background: #ddf4ff !important; color: #0550ae !important; border-color: #b6e3ff !important; }
+    html:not(.dark) .gh-link { background: #f6f8fa !important; border-color: #d0d7de !important; color: #24292f !important; }
+    html:not(.dark) .gh-link:hover { background: #eaeef2 !important; }
+    html:not(.dark) .toggle-btn { background: #f6f8fa !important; border-color: #d0d7de !important; color: #57606a !important; }
+    html:not(.dark) .stat-item { background: #fff !important; }
+    html:not(.dark) .stat-grid { background: #d0d7de !important; }
+    html:not(.dark) .name { color: #24292f !important; }
+    html:not(.dark) .wordmark { color: #24292f !important; }
+    html:not(.dark) .about-text { color: #57606a !important; }
+    html:not(.dark) .card-title { color: #24292f !important; }
 
-        <h1 class="text-3xl font-bold mt-4 mb-1 tracking-tight dark:text-white" style="font-family: 'Syne', sans-serif;">
-          Carter Sasse
-        </h1>
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(13,17,23,0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #21262d;
+      padding: 0 40px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        <p class="text-gray-500 dark:text-gray-400 text-sm mb-5">
-          15-year-old tinkering with things.
-        </p>
+    .wordmark {
+      font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: #e6edf3;
+      letter-spacing: 0;
+    }
 
-        <div class="flex gap-2 justify-center flex-wrap">
-          <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Tech</span>
-          <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Builder</span>
-          <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Student</span>
+    .toggle-btn {
+      background: #21262d;
+      border: 1px solid #30363d;
+      color: #8b949e;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .toggle-btn:hover { background: #2d333b; color: #e6edf3; }
+
+    .page {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 36px 40px 80px;
+      display: grid;
+      grid-template-columns: 268px 1fr;
+      grid-template-rows: auto auto;
+      gap: 18px;
+    }
+
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+    }
+
+    .sidebar {
+      grid-column: 1;
+      grid-row: 1 / 3;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .profile-card { padding: 26px 22px; }
+
+    .avatar-wrap {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #30363d;
+      margin-bottom: 14px;
+    }
+    .avatar-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .name {
+      font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      color: #e6edf3;
+      margin-bottom: 1px;
+      letter-spacing: 0;
+    }
+
+    .handle { font-size: 13px; color: #8b949e; margin-bottom: 12px; }
+    .bio { font-size: 13px; line-height: 1.65; color: #8b949e; margin-bottom: 14px; }
+    .divider { border: none; border-top: 1px solid #30363d; margin: 14px 0; }
+
+    .tag {
+      background: rgba(56,139,253,0.1);
+      color: #58a6ff;
+      border: 1px solid rgba(56,139,253,0.18);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 9px;
+      border-radius: 20px;
+    }
+
+    .gh-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #21262d;
+      border: 1px solid #30363d;
+      border-radius: 7px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: #e6edf3;
+      text-decoration: none;
+      transition: background 0.15s;
+      width: 100%;
+    }
+    .gh-link:hover { background: #2d333b; }
+    .gh-link .arrow { color: #8b949e; margin-left: auto; font-size: 11px; }
+
+    .contact-card { padding: 22px; }
+
+    .card-title {
+      font-family: 'Syne', ui-sans-serif, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #e6edf3;
+      margin-bottom: 14px;
+    }
+
+    input, textarea {
+      display: block;
+      width: 100%;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 7px 11px;
+      font-size: 13px;
+      font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+      color: #e6edf3;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      margin-bottom: 9px;
+    }
+    input::placeholder, textarea::placeholder { color: #484f58; }
+    input:focus, textarea:focus {
+      border-color: #388bfd;
+      box-shadow: 0 0 0 3px rgba(56,139,253,0.08);
+    }
+    textarea { resize: none; }
+
+    .submit-btn {
+      width: 100%;
+      background: #238636;
+      color: #fff;
+      border: 1px solid rgba(240,246,252,0.1);
+      border-radius: 6px;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .submit-btn:hover { background: #2ea043; }
+
+    .main-top { grid-column: 2; grid-row: 1; }
+    .main-bottom { grid-column: 2; grid-row: 2; }
+
+    .stats-card { padding: 22px; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #8b949e;
+      margin-bottom: 16px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #30363d;
+      border-radius: 7px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .stat-item {
+      background: #161b22;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Syne', ui-sans-serif, system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: #58a6ff;
+      display: block;
+    }
+    .stat-desc { font-size: 11px; color: #8b949e; margin-top: 3px; }
+
+    .gh-imgs { display: flex; flex-direction: column; gap: 10px; }
+    .gh-imgs a { display: block; }
+    .gh-imgs img {
+      border-radius: 7px;
+      width: 100%;
+      max-width: 500px;
+      display: block;
+      min-height: 120px;
+      background: #21262d;
+    }
+
+    .about-card { padding: 22px; }
+    .about-text { font-size: 13.5px; line-height: 1.75; color: #8b949e; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+    .sidebar .profile-card { animation: fadeUp 0.3s ease both; }
+    .sidebar .contact-card { animation: fadeUp 0.3s ease 0.06s both; }
+    .main-top { animation: fadeUp 0.3s ease 0.04s both; }
+    .main-bottom { animation: fadeUp 0.3s ease 0.1s both; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav-bar">
+    <span class="wordmark">Carter Sasse</span>
+    <button class="toggle-btn" onclick="document.documentElement.classList.toggle('dark'); updateImgs()">Toggle theme</button>
+  </nav>
+
+  <div class="page">
+
+    <aside class="sidebar">
+
+      <div class="card profile-card">
+        <div class="avatar-wrap">
+          <img src="https://cdn.hackclub.com/019df5ef-4f95-71c0-a665-4893c98e0df5/IMG_8148.JPG" alt="Carter Sasse" />
         </div>
-        <!-- Stats card (light + dark) -->
-        <a href="https://github.com/LofiDev47">
-          <img src="https://github-readme-stats-fast.vercel.app/api?username=LofiDev47&show_icons=true&theme=default&bg_color=1f2937" class="mx-auto mt-4 rounded-xl dark:hidden"/>
-          <img src="https://github-readme-stats-fast.vercel.app/api?username=LofiDev47&show_icons=true&theme=dark&bg_color=1f2937" class="mx-auto mt-4 rounded-xl hidden dark:block"/>
-        </a>
 
-        <!-- Top languages card (light + dark) -->
-        <a href="https://github.com/LofiDev47">
-          <img src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=LofiDev47&layout=compact&theme=default&bg_color=1f2937" class="mx-auto mt-2 rounded-xl dark:hidden"/>
-          <img src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=LofiDev47&layout=compact&theme=dark&bg_color=1f2937" class="mx-auto mt-2 rounded-xl hidden dark:block"/>
-        </a>
-        <div class="flex gap-2 justify-center mt-4">
-          
-           <a href="https://github.com/LofiDev47"
-            target="_blank"
-            aria-label="Carter Sasse on GitHub"
-            class="border border-gray-200 dark:border-gray-600 dark:text-gray-300 rounded-lg px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center justify-center gap-2"
-          >
-            <img
-              src="https://imgs.search.brave.com/FjOAY2Y7fyITaJL6KmfDGOK8P9CX9xA9VzF1B9xaOvo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2IyL2M1/L2U2L2IyYzVlNjUz/ODRiMWIwZWE0Y2Qz/NTFiNjE1NWUxYjI5/LmpwZw"
-              alt="Previous profile photo of Carter Sasse"
-              class="inline-block w-6 h-6 rounded-full object-cover"
-              loading="lazy"
-            />
-            <span>GitHub</span>
-          </a>
+        <p class="name">Carter Sasse</p>
+        <p class="handle">@LofiDev47</p>
+        <p class="bio">15-year-old tinkering with things I find interesting — mostly web, hardware, and whatever's next.</p>
+
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+          <span class="tag">Tech</span>
+          <span class="tag">Builder</span>
+          <span class="tag">Student</span>
         </div>
+
+        <hr class="divider" />
+
+        <a class="gh-link" href="https://github.com/LofiDev47" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          GitHub
+          <span class="arrow">LofiDev47 ↗</span>
+        </a>
       </div>
-    </div>
-<div class="flex justify-center px-8 pb-8">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-8 max-w-sm w-full text-left">
 
-        <h2 class="text-lg font-bold mb-4 dark:text-white" style="font-family: 'syne', sans-serif;">
-          Get in touch
-        </h2>
-
+      <div class="card contact-card">
+        <p class="card-title">Get in touch</p>
         <form action="https://formspree.io/f/meevwgbd" method="POST">
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+          <textarea name="message" placeholder="Your message" rows="5" required></textarea>
+          <button type="submit" class="submit-btn">Send message</button>
+        </form>
+      </div>
 
-          <input
-          type="text"
-          name="name"
-          placeholder="Your name"
-          class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm mb-3 outline-none focus:border-blue-400"
-          />
+    </aside>
 
-          <input
-          type="email"
-          name="email"
-          placeholder="Your email"
-          class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm mb-3 outline-none focus:border-blue-400"
-          />
+    <section class="card main-top stats-card">
+      <p class="section-label">GitHub Activity</p>
 
-          <textarea
-          name="message"
-          placeholder="Your message"
-          rows="4"
-          class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm mb-3 outline-none focus:border-blue-400 resize-none"
-          ></textarea>
+      <div class="gh-imgs">
+        <a href="https://github.com/LofiDev47" target="_blank" rel="noopener">
+          <img id="stats-img" alt="GitHub stats" />
+        </a>
+        <a href="https://github.com/LofiDev47" target="_blank" rel="noopener">
+          <img id="langs-img" alt="Top languages" />
+        </a>
+      </div>
+    </section>
 
-          <button
-          type="submit"
-          class="w-full bg-blue-400 text-white rounded-lg px-4 py-2 text-sm hover:bg-blue-500"
-          >
-          Send
-          </button>
+    <section class="card main-bottom about-card">
+      <p class="section-label">About</p>
+      <p class="about-text">
+        Hey — I'm Carter, a 15-year-old in the US who builds things for fun. I'm mostly drawn to web development and low-level hardware projects, but I follow curiosity wherever it goes. When I'm not writing code I'm usually taking things apart to see how they work.
+      </p>
+    </section>
 
-          </form>
+  </div>
 
-          </div>
-          </div>
-
-  </body>
+  <script>
+    function updateImgs() {
+      const dark = document.documentElement.classList.contains('dark');
+      const theme = dark ? 'dark' : 'default';
+      const bg    = dark ? '161b22' : 'ffffff';
+      const bust  = Date.now();
+      document.getElementById('stats-img').src =
+        `https://github-readme-stats-fast.vercel.app/api?username=LofiDev47&show_icons=true&theme=${theme}&bg_color=${bg}&hide_border=true&cache_seconds=1800&v=${bust}`;
+      document.getElementById('langs-img').src =
+        `https://github-readme-stats-fast.vercel.app/api/top-langs/?username=LofiDev47&layout=compact&theme=${theme}&bg_color=${bg}&hide_border=true&cache_seconds=1800&v=${bust}`;
+    }
+    updateImgs();
+  </script>
+</body>
 </html>
