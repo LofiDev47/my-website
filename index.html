@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>tailwind.config = { darkMode: 'class' }</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -253,6 +254,127 @@
     .about-card { padding: 22px; }
     .about-text { font-size: 13.5px; line-height: 1.75; color: #8b949e; }
 
+    .projects-section { grid-column: 1 / -1; }
+    .projects-section > .section-label { 
+      padding-left: 22px;
+      padding-top: 22px;
+      padding-bottom: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #e6edf3;
+    }
+
+    .projects-tabs { 
+      display: flex; 
+      gap: 8px; 
+      border-bottom: 1px solid #30363d; 
+      padding: 0 22px; 
+      margin-bottom: 0; 
+      background: #0d1117;
+      overflow-x: auto;
+    }
+
+    .projects-tab { 
+      padding: 12px 20px; 
+      font-size: 13px; 
+      border: none; 
+      background: none; 
+      color: #8b949e; 
+      cursor: pointer; 
+      border-bottom: 2px solid transparent; 
+      transition: all 0.2s ease; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: flex-start;
+      position: relative;
+      border-radius: 6px 6px 0 0;
+      white-space: nowrap;
+    }
+
+    .projects-tab::before {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #58a6ff;
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+    }
+
+    .projects-tab:hover { 
+      color: #e6edf3; 
+      background: rgba(56,139,253,0.08);
+    }
+
+    .projects-tab.active { 
+      color: #58a6ff; 
+      background: rgba(56,139,253,0.12);
+      font-weight: 500;
+    }
+
+    .projects-tab.active::before {
+      transform: scaleX(1);
+    }
+
+    .projects-tab-name { 
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500; 
+    }
+
+    .projects-tab-name::before {
+      content: '📁';
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    .projects-tab.active .projects-tab-name::before {
+      content: '📂';
+      opacity: 1;
+    }
+
+    .projects-tab-date { 
+      display: block; 
+      font-size: 11px; 
+      color: #6e7681; 
+      margin-top: 3px;
+      font-weight: 400;
+    }
+
+    .projects-tab:hover .projects-tab-date {
+      color: #8b949e;
+    }
+
+    .projects-tab.active .projects-tab-date {
+      color: #79c0ff;
+    }
+    .project-content { padding: 22px; }
+    .project-meta { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #30363d; }
+    .project-title { font-size: 20px; font-weight: 600; color: #e6edf3; margin: 0 0 4px 0; }
+    .project-date { font-size: 12px; color: #8b949e; margin: 0; }
+    .project-card { padding: 0; margin-bottom: 18px; }
+    .markdown-content { padding: 22px; }
+    .project-card h2 { font-size: 18px; font-weight: 600; color: #58a6ff; margin: 0 0 16px 0; padding-top: 0; }
+    .project-card h2:not(:first-child) { margin-top: 28px; padding-top: 20px; border-top: 1px solid #30363d; }
+    .project-card h3 { font-size: 15px; font-weight: 600; color: #58a6ff; margin: 16px 0 10px 0; }
+    .project-card h4 { font-size: 14px; font-weight: 600; color: #58a6ff; margin: 14px 0 8px 0; }
+    .project-card p { font-size: 13px; line-height: 1.75; margin-bottom: 14px; color: #e6edf3; }
+    .project-card p:last-child { margin-bottom: 0; }
+    .project-card a { color: #58a6ff; text-decoration: none; transition: opacity 0.15s; }
+    .project-card a:hover { text-decoration: underline; opacity: 0.8; }
+    .project-card img { max-width: 100%; height: auto; border-radius: 8px; margin: 16px 0; border: 1px solid #30363d; display: block; }
+    .project-card ul { margin: 12px 0 12px 20px; padding: 0; font-size: 13px; line-height: 1.75; }
+    .project-card ol { margin: 12px 0 12px 20px; padding: 0; font-size: 13px; line-height: 1.75; }
+    .project-card li { margin-bottom: 8px; color: #e6edf3; }
+    .project-card code { background: #0d1117; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 12px; color: #79c0ff; }
+    .project-card pre { background: #0d1117; padding: 12px; border-radius: 6px; overflow-x: auto; margin: 12px 0; border: 1px solid #30363d; }
+    .project-card pre code { background: none; padding: 0; }
+    .project-card blockquote { border-left: 3px solid #58a6ff; padding-left: 12px; margin: 12px 0; color: #8b949e; font-style: italic; }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: none; }
@@ -261,6 +383,7 @@
     .sidebar .contact-card { animation: fadeUp 0.3s ease 0.06s both; }
     .main-top { animation: fadeUp 0.3s ease 0.04s both; }
     .main-bottom { animation: fadeUp 0.3s ease 0.1s both; }
+    .projects-section { animation: fadeUp 0.3s ease 0.12s both; }
   </style>
 </head>
 <body>
@@ -328,8 +451,21 @@
     <section class="card main-bottom about-card">
       <p class="section-label">About</p>
       <p class="about-text">
-        Hey — I'm Carter, a 15-year-old in the US who builds things for fun. I'm mostly drawn to web development and low-level hardware projects, but I follow curiosity wherever it goes. When I'm not writing code I'm usually taking things apart to see how they work.
+        I love building things, whether it's a robot a website or just a random project to learn something. 
+        I've been taking random things apart since I was a kid and have been like this ever since. 
+        I currently compete in robotics for team 32563 the butler reapers (butlerreap.org) I'm the Lead of the programming team, but I also love helping out build team when I can.
+        I also participate in hackclub (hackclub.com) I've been in the community for a while but this year I really started to push myself to Learn and build as much as I can. I am currently participating in macondo (macondo.hackclub.com) which is a YSWS themed on 100 Years of Solitude by Gabriel García Márquez and South America.
+
+
       </p>
+    </section>
+
+    <section class="card projects-section">
+      <p class="section-label">Projects</p>
+      <div class="projects-tabs" id="projects-tabs"></div>
+      <div class="project-card">
+        <div id="project-content"></div>
+      </div>
     </section>
 
   </div>
@@ -346,6 +482,54 @@
         `https://github-readme-stats-fast.vercel.app/api/top-langs/?username=LofiDev47&layout=compact&theme=${theme}&bg_color=${bg}&hide_border=true&cache_seconds=1800&v=${bust}`;
     }
     updateImgs();
+
+    const projectsData = [
+      {
+        id: "usb-hub",
+        name: "USB Hub devlog",
+        date: "May 6, 2026",
+        markdown: `## Session 1
+This was my first time trying anything related to PCBs, so getting used to the editor (easyEDA) took some time, but I found it really interesting, and it got me excited for the rest of the project. I had a bit of trouble with some of the small details. I almost missed a resistor or two because of the visual overload on the screen, but over the course of this session, I eventually got used to the site, and by the end, when I had finished the USB hub schematic, I was more confident in it. For the ports, I decided to go with a USB-C for upstream to the computer and 3 USB and 1 USB-C for downstream, all using only the 2.0 standard because that is all my SL2.1 chip supports. I was really struggling to decide if I wanted one or two USBC connectors because I wasn't sure which would have been more useful. I decided on just one because, really, the majority of my devices just use USB-B, and I had the Type-C just in case
+![image](https://cdn.hackclub.com/019dffb2-9a1f-7a08-b58c-10ab72aa205f/image.png)
+I plan on doing a cyberpunk-ish design, so I also did some quick research and looked for some inspiration for the next steps of the project
+
+## Session 2
+Since I finished the schematic the day before, I started designing the actual PCB. I had a similar thing, as when I started the schematic, I had no idea what I was doing. This is where the guide was really useful to just get me accustomed to the interface. When it came to deciding the shape of the PCB, I took my time and tried some different shapes, but did, maybe, boringly choose a similar shape to the one in the guide because I really liked the rectangle shape, and the slope on the side was a really good design element. For the placement, I decided to put my upstream Type-C on that slope because I think it would help indicate which port was which. I also plan to have indicators for the ports on the 3d printed case. I decided to put the three USB-B ports on the top side of the PCB. They fit there pretty much perfectly, and that left the last downstream port, the type-C, which I put adjacent to the USB ports so they would at least be close. This one, I wasn't confident in the design, but I wanted to continue with it. Today I definitely spent the most time with the traces. I routed them, then removed them multiple times. I wanted it to look good and be efficient.
+![image](https://cdn.hackclub.com/019dffef-8770-7b2b-bbd1-bfe6b01c371b/image.png)
+
+## Session 3
+This was mostly focused on the cosmetics of the PCB. At the start, I added a keyring to the board. I'm not sure if I'm going to keep it or implement it into the case. Then I did some research and decided to use the M3 hole for my board. I need to use M3 screws for another project, and just had them ordered on Amazon, so to keep it cheap, I decided to just use those same screws. Then I looked into silk screening, I added my tag, and tried some different graphics just to see what I liked and what looked nice on the small board. I ended up just using a triangle shape cyberpunk-ish graphic and making it black. I think I'm going to stick with the white colored background. I think it looks good with the graphics, and I plan on adding at least a small window to the case so they are visible. 
+![image](https://cdn.hackclub.com/019e000b-0123-7462-8440-41503311575c/image.png)
+I then imported it into Onshape so I could design the case around it. I did have some small issues with it rendering each tiny little piece individually, which was destroying my computer. My robotics friend, with much more onshape experience, taught me how to turn it into a composite part, and that fixed my issue.`
+      }
+    ];
+
+    function renderProjectTabs() {
+      const tabsContainer = document.getElementById('projects-tabs');
+      tabsContainer.innerHTML = projectsData.map((proj, idx) => `<button class="projects-tab ${idx === 0 ? 'active' : ''}" onclick="switchProject('${proj.id}')"><span class="projects-tab-name">${proj.name}</span><span class="projects-tab-date">${proj.date}</span></button>`).join('');
+    }
+
+    function switchProject(projectId) {
+      const proj = projectsData.find(p => p.id === projectId);
+      if (!proj) return;
+      
+      // Update active tab
+      document.querySelectorAll('.projects-tab').forEach(tab => tab.classList.remove('active'));
+      event.target.closest('.projects-tab').classList.add('active');
+      
+      // Update content
+      const contentDiv = document.getElementById('project-content');
+      contentDiv.innerHTML = `
+        <div class="project-meta">
+          <h2 class="project-title">${proj.name}</h2>
+          <p class="project-date">${proj.date}</p>
+        </div>
+        <div class="markdown-content">${marked.parse(proj.markdown)}</div>
+      `;
+    }
+
+    renderProjectTabs();
+    switchProject(projectsData[0].id);
   </script>
 </body>
 </html>
